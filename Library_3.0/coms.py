@@ -1,0 +1,159 @@
+from datetime import datetime
+
+
+
+def add(topic,name,author,place):
+    f = open('caches/new.txt','a')
+    out='add' + ' ' + str(topic) + ' ' + str(name) + ' ' + str(author) + ' ' + str (place) + '\n'
+    f.write(out)
+    f.close()
+
+    
+    f1 = open('base_files/cache.txt','a')
+    out=str(datetime.now()) + '__________' + 'add' + ' ' + str(topic) + ' '  + str(name) + ' ' + str(author) + ' ' + str (place) 
+    f1.write('\n')
+    f1.write(out)
+    f1.close()
+
+def cadd(topic,name,author,place):
+    f = open('caches/new.txt','a')
+    out='cadd' + ' ' + str(topic) + ' '  + str(name) + ' ' + str(author) + ' ' + str (place) + '\n'
+    f.write(out)
+    f.close()
+
+    f1 = open('base_files/cache.txt','a')
+    out=str(datetime.now()) + '__________' + 'cadd' + ' ' + str(topic) + ' '  + str(name) + ' ' + str(author) + ' ' + str (place)
+    f1.write('\n')
+    f1.write(out)
+    f1.close()
+
+def nadd(number,topic,name,author,place):
+    f = open('caches/new.txt','a')
+    out='nadd'+ ' ' + str(number) + ' ' + str(topic) + ' '  + str(name) + ' ' + str(author) + ' ' + str (place) + '\n'
+    f.write(out)
+    f.close()
+
+    f1 = open('base_files/cache.txt','a')
+    out=str(datetime.now()) + '__________' + 'nadd'+ ' ' + str(topic) + ' '  + str(number) + ' ' + str(name) + ' ' + str(author) + ' ' + str (place)
+    f1.write('\n')
+    f1.write(out)
+    f1.close()
+
+def delete(number):
+    f = open('caches/new.txt','a')
+    out = 'del' + ' ' + number + '\n'
+    f.write(out)
+    f.close()
+
+    f1 = open('base_files/cache.txt','a')
+    f1.write('\n')
+    out =str(datetime.now()) + '__________' +  'del' + ' ' + number + '\n'
+    f1.write(out)
+    f1.close()
+    
+def load():
+    f = open('base_files/info.txt','r')
+    i=0
+    mas=[]
+    for line in f:
+        mas.append(line.split())
+        i+=1
+    f.close()
+    return mas
+
+def search(topic,name,author):
+    out=[]
+    mas = load()
+    f = open('caches/s_cache.txt','w')
+#    if logic_oper == 'И' or logic_oper == '&' or logic_oper == '&&' or logic_oper == 'AND' or logic_oper == 'and' or logic_oper == 'And'or logic_oper == 'и':
+    for i in range(len(mas)-1):
+        if   str(topic)==str(mas[i][1]) and str(name)==str(mas[i][2]) and str(author)==str(mas[i][3]):
+            f.write(str(mas[i][0]) + ' ' + str(mas[i][1]) + ' ' + str(mas[i][2]) + ' ' + str(mas[i][3]) + ' ' + str(mas[i][4]) + '\n')
+        elif str(topic)==str(mas[i][1]) and str(name)==str(mas[i][2]) and str(author)=='__0__'       :
+            f.write(str(mas[i][0]) + ' ' + str(mas[i][1]) + ' ' + str(mas[i][2]) + ' ' + str(mas[i][3]) + ' ' + str(mas[i][4]) + '\n')
+        elif str(topic)==str(mas[i][1]) and str(name)=='__0__'        and str(author)==str(mas[i][3]):
+            f.write(str(mas[i][0]) + ' ' + str(mas[i][1]) + ' ' + str(mas[i][2]) + ' ' + str(mas[i][3]) + ' ' + str(mas[i][4]) + '\n')
+        elif str(topic)=='__0__'        and str(name)==str(mas[i][2]) and str(author)==str(mas[i][3]):
+            f.write(str(mas[i][0]) + ' ' + str(mas[i][1]) + ' ' + str(mas[i][2]) + ' ' + str(mas[i][3]) + ' ' + str(mas[i][4]) + '\n')
+        elif str(topic)=='__0__'        and str(name)==str(mas[i][2]) and str(author)=='__0__'       :
+            f.write(str(mas[i][0]) + ' ' + str(mas[i][1]) + ' ' + str(mas[i][2]) + ' ' + str(mas[i][3]) + ' ' + str(mas[i][4]) + '\n')
+        elif str(topic)==str(mas[i][1]) and str(name)=='__0__'        and str(author)=='__0__'       :
+            f.write(str(mas[i][0]) + ' ' + str(mas[i][1]) + ' ' + str(mas[i][2]) + ' ' + str(mas[i][3]) + ' ' + str(mas[i][4]) + '\n')
+        elif str(topic)=='__0__'        and str(name)=='__0__'        and str(author)==str(mas[i][3]):
+            f.write(str(mas[i][0]) + ' ' + str(mas[i][1]) + ' ' + str(mas[i][2]) + ' ' + str(mas[i][3]) + ' ' + str(mas[i][4]) + '\n')
+        elif str(topic)=='__0__'        and str(name)=='__0__'        and str(author)=='__0__'       :
+            f.write(str(mas[i][0]) + ' ' + str(mas[i][1]) + ' ' + str(mas[i][2]) + ' ' + str(mas[i][3]) + ' ' + str(mas[i][4]) + '\n')
+        
+ #   elif logic_oper == 'ИЛИ' or logic_oper == '|' or logic_oper == 'Или' or logic_oper == 'OR' or logic_oper == 'or' or logic_oper == 'Or'or logic_oper == 'или':
+
+ #   if str(mas[i][1])==str(name) or str(mas[i][2])==str(author):
+ #           f.write(str(mas[i][0]) + ' ' + str(mas[i][1]) + ' ' + str(mas[i][2]) + ' ' + str(mas[i][3]) + '\n')
+    f.close()
+
+def ssearch(number,name,author):
+    out=[]
+    mas = load()
+    f = open('caches/s_cache.txt','w')
+    for i in range(len(mas)-1):
+        if   str(number)==str(mas[i][0]) and str(name)==str(mas[i][2]) and str(author)==str(mas[i][3]):
+            out=mas[i]
+    f.close()
+    return out
+    
+
+        
+
+
+def save():
+    mas = load()
+    num = int(mas[len(mas)-1][0])
+    del mas[len(mas)-1]
+    f1 = open('caches/new.txt','r')
+    for line in f1:
+        li=line.split()
+        if li[0] == 'add':
+            num+=1
+            li[0] = num
+            mas.append(li)
+        elif li[0] == 'cadd':
+            li[0] = num
+            mas.append(li)
+        elif li[0] == 'nadd':
+            del li[0]
+            mas.append(li)
+        elif li[0] == 'del':
+            for i in range(len(mas)-1,-1,-1):
+                if mas[i][0] == li[1]:
+                    del mas[i]
+    f1.close()
+    f2 = open('base_files/info.txt','w')
+    for line in mas:
+        out = str(line[0]) + ' ' + str(line[1]) + ' ' + str(line[2]) + ' ' + str(line[3]) + ' ' + str(line[4]) + '\n'
+        f2.write(out)
+    f2.write(str(num))
+    f2.close()
+    f3 = open('caches/new.txt','w')
+    f3.close()
+    
+def clearcache():
+    f = open('base_files/cache.txt','w')
+    f.close()
+
+def showall():
+    f = open('base_files/info.txt','r')
+    out=[]
+    for line in f:
+        out.append(line)
+    f.close()
+    return out
+
+def clearall():
+    f = open('base_files/info.txt','w')
+    f.write('0')
+    f.close
+    f1 = open('base_files/cache.txt','a')
+    out =str(datetime.now()) + '__________' +  'ALL_INFORMATION_CLEARED' + '\n'
+    f1.write('\n')
+    f1.write(out)
+    f1.write('=========================================================++')
+    f1.close()
